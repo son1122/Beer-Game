@@ -267,6 +267,7 @@ function App(){
   const [player3,setPlayer3] = useState([0,0,0,0]) //stock,backlog,cost,orderin,order out
   const [player4,setPlayer4] = useState([0,0,0,0,0]) //stock,backlog,cost,orderin,manu,order out
   const [turn,setTurn] = useState(1)
+  const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
     useEffect(() => {
       const options = {
@@ -310,7 +311,7 @@ function App(){
           />
           
           </Link>
-          <Link to  = {"/game/"+player}>
+          <Link to  = {"/game/"}>
           <h1>Beer Game</h1>
           </Link>
           
@@ -323,7 +324,7 @@ function App(){
           <Routes>
             <Route path="/" element={<Main />}/>
             <Route path="/about" element={<About />}/>
-            <Route path="/game/:player" element={<Player player={player} setPlayer={setPlayer} 
+            <Route path="/game/" element={<Player whoPlay={whoPlay} setWhoPlay={setWhoPlay} player={player} setPlayer={setPlayer} 
             price={price} turn={turn} setTurn={setTurn} player1={player1} setPlayer1={setPlayer1}
             player2={player1} setPlayer2={setPlayer1} player3={player1} setPlayer3={setPlayer1}
             player4={player1} setPlayer4={setPlayer1}/>}/>

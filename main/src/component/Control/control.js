@@ -12,14 +12,37 @@ const Control = (props) => {
 
   //   return (redirect("/player/"+props.player)) 
   // }, [])
-  console.log(props)
+  useEffect(()=>{
+    // let num = '/game/'+props.player
+    // navigate(num);
+    console.log(props.player);
+    switch(props.player){
+      case 1 :
+        props.setWhoPlay("Reatrailer")
+        break;
+      case 2 :
+        props.setWhoPlay("Wholesale")
+        break;
+      case 3 :
+        props.setWhoPlay("Distributor")
+        break;
+      case 4 :
+        props.setWhoPlay("Manufactoring")
+        break;
+        default :
+        props.setWhoPlay("Reatrailer")
+        break;
+    }
+  })
     return (
       <div className="control-container">
         <div>
-        <h1>Player {props.player}</h1>
+        <h1>Player {props.player} :  {props.whoPlay}</h1>
         </div>
-        <div>
-        <h1>Line 2</h1>
+        <div className="turn-container">
+          <h1>Turn : {props.turn}</h1>
+          <h1>Week : {props.turn}</h1>
+          <h1>Month : {props.turn}</h1>
         </div>
         <div>
         <h1>line 3 </h1>
@@ -28,7 +51,8 @@ const Control = (props) => {
           <button onClick={()=>{
               console.log(props.player);
               props.setPlayer(props.player>=4?1:props.player+1);
-              navigate('/game/'+props.player);
+              props.setTurn(props.turn+1)
+              console.log(props.player);
           }}>change player</button>
         </div>
         
