@@ -256,16 +256,16 @@ const countryCode =[
   {code:'ZW',name: 'Zimbabwe'}
   ];
 function App(){
-  const [para, setPara] = useState()
+  const [para, setPara] = useState() //stock cost , back log cost , turn number , holiday amp
   const [player,setPlayer] = useState(1)
   //player 1 retailer 
   //player 2 wholsale
   //player 3 distributor
   //player 4 manufactoring
-  const [player1,setPlayer1] = useState([0,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player2,setPlayer2] = useState([0,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player3,setPlayer3] = useState([0,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player4,setPlayer4] = useState([0,0,0,0,0]) //stock,backlog,cost,orderin,manu,order out
+  const [player1,setPlayer1] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
+  const [player2,setPlayer2] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
+  const [player3,setPlayer3] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
+  const [player4,setPlayer4] = useState([100,0,0,0,0]) //stock,backlog,cost,orderin,manu,order out
   const [turn,setTurn] = useState(1)
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
@@ -278,9 +278,9 @@ function App(){
           // 'X-RapidAPI-Host': 'public-holiday.p.rapidapi.com'
         },
         params: {
-          num:20,
-          min:1,
-          max:100,
+          num:48,
+          min:10,
+          max:500,
           col:1,
           base:10,
           format:"plain",

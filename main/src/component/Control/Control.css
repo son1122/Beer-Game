@@ -17,3 +17,31 @@
     justify-content: space-around;
     width: 100%;
   }
+  .input-value{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+  }
+
+  .input-value one{
+
+  }
+
+  .input-value two{
+    grid-template-rows: auto auto;
+  }
+
+  .input-value three{
+
+  }
+  .submit{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
