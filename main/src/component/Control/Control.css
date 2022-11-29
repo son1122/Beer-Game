@@ -1,0 +1,13 @@
+.control-container {
+    align-items: center;
+    min-width: 50vw;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto 40% auto;
+    justify-items: center;
+  }
+  .control-container button{
+    min-height: auto;
+    width: 250px;
+    height: 50px;
+  }
