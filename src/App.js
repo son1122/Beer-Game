@@ -262,10 +262,10 @@ function App(){
   //player 2 wholsale
   //player 3 distributor
   //player 4 manufactoring
-  const [player1,setPlayer1] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player2,setPlayer2] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player3,setPlayer3] = useState([100,0,0,0]) //stock,backlog,cost,orderin,order out
-  const [player4,setPlayer4] = useState([100,0,0,0,0]) //stock,backlog,cost,orderin,manu,order out
+  const [player1,setPlayer1] = useState([100,0,0,0,5]) //stock,backlog,cost,sale,order
+  const [player2,setPlayer2] = useState([200,0,0,0,0]) //stock,backlog,cost,sale,order
+  const [player3,setPlayer3] = useState([300,0,0,0,0]) //stock,backlog,cost,sale,order
+  const [player4,setPlayer4] = useState([400,0,0,0,0,0]) //stock,backlog,cost,sale,order,manu
   const [turn,setTurn] = useState(1)
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
@@ -278,9 +278,9 @@ function App(){
           // 'X-RapidAPI-Host': 'public-holiday.p.rapidapi.com'
         },
         params: {
-          num:48,
+          num:5,
           min:10,
-          max:500,
+          max:50,
           col:1,
           base:10,
           format:"plain",
@@ -288,16 +288,17 @@ function App(){
         }
       };
       
-      axios.request(options).then(function (response) {
-        console.log(response.data);
-        let data = response.data.split("\n")
-        data.pop()
-        console.log(data);
-        setPrice(data);
-        console.log(price);
-      }).catch(function (error) {
-        console.error(error);
-      });
+      // axios.request(options).then(function (response) {
+      //   console.log(response.data);
+      //   let data = response.data.split("\n")
+      //   data.pop()
+      //   console.log(data);
+      //   setPrice(data);
+      //   console.log(price);
+      // }).catch(function (error) {
+      //   console.error(error);
+      // });
+      setPrice([5,55,5,55])
   }, [])
 
     return (
@@ -326,8 +327,8 @@ function App(){
             <Route path="/about" element={<About />}/>
             <Route path="/game/" element={<Player whoPlay={whoPlay} setWhoPlay={setWhoPlay} player={player} setPlayer={setPlayer} 
             price={price} turn={turn} setTurn={setTurn} player1={player1} setPlayer1={setPlayer1}
-            player2={player1} setPlayer2={setPlayer1} player3={player1} setPlayer3={setPlayer1}
-            player4={player1} setPlayer4={setPlayer1}/>}/>
+            player2={player2} setPlayer2={setPlayer2} player3={player3} setPlayer3={setPlayer3}
+            player4={player4} setPlayer4={setPlayer4}/>}/>
             {/* <Route path="/currencies" element={<Currencies />}/> */}
             {/* <Route path="/price/:currency" element={<Price price={price} setPrice={setPrice}/>}/> */}
             <Route path="currency" element={<Navigate to = "/currencies"/>}/>
