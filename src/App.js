@@ -262,10 +262,11 @@ function App(){
   //player 2 wholsale
   //player 3 distributor
   //player 4 manufactoring
-  const [player1,setPlayer1] = useState([100,0,0,5,0,0]) //stock,backlog,cost,sale,order,getOrder
-  const [player2,setPlayer2] = useState([200,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder
-  const [player3,setPlayer3] = useState([300,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder
-  const [player4,setPlayer4] = useState([400,0,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,stockNext,Manu
+  const [player1,setPlayer1] = useState([100,0,0,5,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
+  const [player2,setPlayer2] = useState([200,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
+  const [player3,setPlayer3] = useState([300,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
+  const [player4,setPlayer4] = useState([400,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
+  const [manu,setManu]=useState([0,0]) //stockNext,Manu
   const [turn,setTurn] = useState(1)
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
@@ -298,7 +299,7 @@ function App(){
       // }).catch(function (error) {
       //   console.error(error);
       // });
-      setPrice([5,55,5,55,5,55,5,55,5,55,5,55,5,55,5,55,5,55,5])
+      setPrice([5,15,5,15,5,15,5,15,5,15,5,15,5,15,5,15])
   }, [])
 
     return (
@@ -328,7 +329,7 @@ function App(){
             <Route path="/game/" element={<Player whoPlay={whoPlay} setWhoPlay={setWhoPlay} player={player} setPlayer={setPlayer} 
             price={price} turn={turn} setTurn={setTurn} player1={player1} setPlayer1={setPlayer1}
             player2={player2} setPlayer2={setPlayer2} player3={player3} setPlayer3={setPlayer3}
-            player4={player4} setPlayer4={setPlayer4}/>}/>
+            player4={player4} setPlayer4={setPlayer4} manu={manu} setManu={setManu}/>}/>
             {/* <Route path="/currencies" element={<Currencies />}/> */}
             {/* <Route path="/price/:currency" element={<Price price={price} setPrice={setPrice}/>}/> */}
             <Route path="currency" element={<Navigate to = "/currencies"/>}/>

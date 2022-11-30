@@ -32,6 +32,8 @@ const Control = (props) => {
   });
   let data;
   let [data1,data2,data3,data4] =[]
+  let wheOrder,whoGetSale // for change order to next player sale
+  let numOrder,numGet,whoGetOrder,whoSendOrder // for check how much next player can actually get order and assign it to get order 
   const editData = (e) => {
     data = current;
     data[4] = parseInt(e);
@@ -55,97 +57,96 @@ const Control = (props) => {
     }
   };
   const endTurn = () => {
-    console.log(props.player1);
-    console.log(props.player2);
-    console.log(props.player3);
-    console.log(props.player4);
-    data1=props.player1
-    data1 = turnData(data1,props.price[props.turn-1],props.player2[0])
+    //edit data
+    data1 = turnData(props.player1,props.player2)
     props.setPlayer1(data1);
-    data2=props.player2
-    data2 = turnData(data2,props.player1[4],props.player3[0])
+    data2 = turnData(props.player2,props.player3)
     props.setPlayer2(data2);
-    data3=props.player3
-    data3 = turnData(data3,props.player2[4],props.player4[0])
+    data3 = turnData(props.player3,props.player4)
     props.setPlayer3(data3);
-    data4=props.player4
-    data4 = turnData4(data4,props.player3[4])
+    data4 = turnData(props.player4,props.manu,props.setManu)
     props.setPlayer4(data4);
+    // change order to sale of the next player
+    wheOrder = props.price[props.turn-1]
+    whoGetSale = props.player1
+    whoGetSale[3] = wheOrder
+    props.setPlayer1(whoGetSale);
+    wheOrder = props.player1[4]
+    whoGetSale = props.player2
+    whoGetSale[3] = wheOrder
+    props.setPlayer2(whoGetSale);
+    wheOrder = props.player2[4]
+    whoGetSale = props.player3
+    whoGetSale[3] = wheOrder
+    props.setPlayer3(whoGetSale);
+    wheOrder = props.player3[4]
+    whoGetSale = props.player4
+    whoGetSale[3] = wheOrder
+    props.setPlayer4(whoGetSale);
+
+    wheOrder = props.player2[6]
+    whoGetSale = props.player1
+    console.log(whoGetSale);
+    whoGetSale[5] = wheOrder
+    console.log(whoGetSale);
+    props.setPlayer1(whoGetSale);
+    wheOrder = props.player3[6]
+    whoGetSale = props.player2
+    whoGetSale[5] = wheOrder
+    props.setPlayer2(whoGetSale);
+    wheOrder = props.player4[6]
+    whoGetSale = props.player3
+    whoGetSale[5] = wheOrder
+    props.setPlayer3(whoGetSale);
+    
+    
+    
   };
-  const turnData = (dataOfPlayer,sale,stockNext,)=>{
-    let stock=dataOfPlayer[0]
-    let backlog=dataOfPlayer[1]
-    let cost=dataOfPlayer[2]
-    let order=dataOfPlayer[4]
-    let getOrder = 0
-    if(stockNext>order){
-      getOrder = order
+  // data = stock[0],backlog[1],cost[2],sale[3],order[4],getOrder[5],sendOrder[6]
+  // stockNext,Manu
+  const turnData = (dataOfPlayer,nextPlayer)=>{
+    let stock = dataOfPlayer[0]
+    let backlog = dataOfPlayer[1]
+    let cost =  dataOfPlayer[2]
+    let sale =  dataOfPlayer[3]
+    let order = dataOfPlayer[4]
+    let getOrder = dataOfPlayer[5]
+    let sendOrder = 0
+    // get Order
+    //clear backlog Order
+    if(backlog>0){
+      console.log("test backlog");
+      backlog =backlog- getOrder
+      if(backlog>=0){
+        sendOrder += getOrder
+      }else{
+        sendOrder= backlog+getOrder
+        stock=Math.abs(backlog)
+        backlog=0
+      }
     }else{
-      getOrder = 0
+        stock=stock+getOrder
     }
-    sale = parseInt(sale)
-    console.log("sale "+sale+" order "+order+" get "+getOrder);
-    if(parseInt(order)){
-      order = parseInt(order)
+
+    //Clear Sale Order
+    if(sale<=stock&&stock!=0){
+      console.log("test stock more than sale");
+      stock=stock-sale
+      sendOrder += sale
     }else{
-      order = 0
+      stock=stock-sale
+      sendOrder += stock
+      backlog = backlog +Math.abs(stock)
+      stock = 0
     }
-    console.log(order);
-    stock=stock+getOrder
-    if(stock>backlog){
-      stock=stock-backlog
-      backlog=0
-    }else{
-      backlog= backlog-stock
-      stock=0
-    }
-    if(stock>=sale&&stock!=0){
-      stock= stock-sale
-    }else{
-      stock= stock-sale
-      backlog = backlog
-    }
-    // sale=order
-    cost=stock*1+backlog*3
-    return ([stock,backlog,cost,sale,order,getOrder])
+    let result = [stock,backlog,cost,sale,order,getOrder,sendOrder]
+    console.log(result);
+    return (result)
   }
-  const turnData4 = (dataOfPlayer,sale,stockNext)=>{
-    let stock=dataOfPlayer[0]
-    let backlog=dataOfPlayer[1]
-    let cost=dataOfPlayer[2]
-    let order=dataOfPlayer[4]
-    let getOrder = 0
-    let manu=props.player4[7]
-    stockNext = props.player4[5]
-    if(stockNext>order){
-      getOrder = order
-    }else{
-      getOrder = 0
-    }
-    sale = parseInt(sale)
-    console.log("sale "+sale+" order "+order+" get "+getOrder);
-    if(parseInt(order)){
-      order = parseInt(order)
-    }else{
-      order = 0
-    }
-    console.log(order);
-    // console.log(sale);
-    // console.log("my order"+order)
-    if(stock+getOrder>sale){
-      stock= stock+getOrder-sale
-      // sale = 0
-    }else{
-      backlog = Math.abs(stock+getOrder-sale)
-      stock=0
-      // sale = 0
-    }
-    sale = order
-    stockNext=manu
-    manu=order
-    cost=stock*1+backlog*3
-    return ([stock,backlog,cost,sale,order,getOrder,stockNext,manu])
-  }
+  // const turnData4 = (dataOfPlayer,sale)=>{
+    
+  //   return ([stock,backlog,cost,sale,order,getOrder,stockNext,manu])
+  // }
   return (
     <div className="control-container">
       <div>
