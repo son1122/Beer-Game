@@ -262,10 +262,10 @@ function App(){
   //player 2 wholsale
   //player 3 distributor
   //player 4 manufactoring
-  const [player1,setPlayer1] = useState([100,0,0,0,5]) //stock,backlog,cost,sale,order
-  const [player2,setPlayer2] = useState([200,0,0,0,0]) //stock,backlog,cost,sale,order
-  const [player3,setPlayer3] = useState([300,0,0,0,0]) //stock,backlog,cost,sale,order
-  const [player4,setPlayer4] = useState([400,0,0,0,0,0]) //stock,backlog,cost,sale,order,manu
+  const [player1,setPlayer1] = useState([100,0,0,5,0,0]) //stock,backlog,cost,sale,order,getOrder
+  const [player2,setPlayer2] = useState([200,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder
+  const [player3,setPlayer3] = useState([300,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder
+  const [player4,setPlayer4] = useState([400,0,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,stockNext,Manu
   const [turn,setTurn] = useState(1)
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
@@ -298,7 +298,7 @@ function App(){
       // }).catch(function (error) {
       //   console.error(error);
       // });
-      setPrice([5,55,5,55])
+      setPrice([5,55,5,55,5,55,5,55,5,55,5,55,5,55,5,55,5,55,5])
   }, [])
 
     return (
