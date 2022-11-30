@@ -5,6 +5,9 @@ import Control from "../Control/Control";
 import "./Player.css"
 const Player = (props) => {
     
+  // useEffect({
+      
+  // },[])
 
     return (
       <div className="container">

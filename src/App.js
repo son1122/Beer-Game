@@ -270,6 +270,7 @@ function App(){
   const [turn,setTurn] = useState(1)
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
+  const [random,setRandom] = useState([])
     useEffect(() => {
       const options = {
         method: 'GET',
