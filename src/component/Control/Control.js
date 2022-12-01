@@ -145,9 +145,17 @@ const Control = (props) => {
     let sendOrder = 0;
     // get Order
     //clear backlog Order
+    getOrder=Math.abs(getOrder)
+    console.log(dataOfPlayer);
     if (backlog > 0) {
       console.log("test backlog");
-      backlog = backlog - getOrder;
+      if(backlog<=getOrder){
+        getOrder=getOrder-backlog
+        backlog =0
+      }else{
+        backlog = backlog - getOrder;
+      }
+      
       if (backlog >= 0) {
         sendOrder += getOrder;
       } else {
@@ -210,6 +218,7 @@ const Control = (props) => {
             props.setTurn(props.player == 4 ? props.turn + 1 : props.turn);
             editData(e.target[0].value);
             editData2()
+            console.log(props)
             document.getElementById("value").value = null;
             if (props.player == 4) {
               endTurn();

@@ -262,7 +262,7 @@ function App(){
   //player 2 wholsale
   //player 3 distributor
   //player 4 manufactoring
-  const [player1,setPlayer1] = useState([100,0,0,5,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
+  const [player1,setPlayer1] = useState([100,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
   const [player2,setPlayer2] = useState([200,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
   const [player3,setPlayer3] = useState([300,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
   const [player4,setPlayer4] = useState([400,0,0,0,0,0,0]) //stock,backlog,cost,sale,order,getOrder,sendOrder
@@ -271,6 +271,7 @@ function App(){
   const [whoPlay,setWhoPlay] = useState()
   const [price,setPrice] = useState([])
   const [random,setRandom] = useState([])
+  const [country,setCountry] = useState(null)
     useEffect(() => {
       const options = {
         method: 'GET',
@@ -289,10 +290,10 @@ function App(){
           rnd:"new"
         }
       };
-      
+      let data = []
       // axios.request(options).then(function (response) {
       //   console.log(response.data);
-      //   let data = response.data.split("\n")
+      //   data = response.data.split("\n")
       //   data.pop()
       //   console.log(data);
       //   setPrice(data);
@@ -300,7 +301,15 @@ function App(){
       // }).catch(function (error) {
       //   console.error(error);
       // });
-      setPrice([5,15,5,15,5,15,5,15,5,15,5,15,5,15,5,15])
+      
+      let temp = player1
+      for(let i = 0;i<48;i++){
+          data.push(15)
+      }
+      temp[3]=data[0]
+      setPlayer1(temp)
+      // setPrice([5,15,5,15,5,15,5,15,5,15,5,15,5,15,5,15])
+      setPrice(data)
   }, [])
 
     return (
@@ -309,7 +318,7 @@ function App(){
         <nav>
           <Link to  = "/">
           <img
-            src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png"
+            src="https://i.pinimg.com/736x/6e/24/41/6e24416dc6d19a79272eef27a28d83ec.jpg"
             alt=""
           />
           
@@ -325,7 +334,7 @@ function App(){
         </div>
         <div>
           <Routes>
-            <Route path="/" element={<Main />}/>
+            <Route path="/" element={<Main country={country} countryCode={countryCode} setCountry={setCountry}/>}/>
             <Route path="/about" element={<About />}/>
             <Route path="/game/" element={<Player whoPlay={whoPlay} setWhoPlay={setWhoPlay} player={player} setPlayer={setPlayer} 
             price={price} turn={turn} setTurn={setTurn} player1={player1} setPlayer1={setPlayer1}
