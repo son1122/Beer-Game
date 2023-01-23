@@ -3,15 +3,16 @@
     display: grid;
     grid-template-columns: 50vw auto;
     grid-template-rows: 90vh;
-  
-  }
-  @media (max-width: 800px) {
+
+}
+
+@media (max-width: 800px) {
 
     .container {
-      min-width: 100vw;
-      display: grid;
-      grid-template-columns: auto;
-      grid-template-rows: 90vh auto;
-    
+        min-width: 100vw;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 90vh auto;
+
     }
-  }
+}

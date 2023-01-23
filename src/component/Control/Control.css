@@ -5,44 +5,48 @@
     grid-template-columns: auto;
     grid-template-rows: auto auto 40% auto;
     justify-items: center;
-  }
-  .control-container button{
+}
+
+.control-container button {
     min-height: auto;
     width: 250px;
     height: 50px;
-  }
-  .turn-container{
+}
+
+.turn-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-  }
-  .input-value{
+}
+
+.input-value {
     width: 100%;
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-around;
     text-align: center;
     align-items: center;
-    
-  }
 
-  .input-value one{
+}
 
-  }
+.input-value one {
 
-  .input-value two{
+}
+
+.input-value two {
     grid-template-rows: auto auto;
-  }
+}
 
-  .input-value three{
+.input-value three {
 
-  }
-  .submit{
+}
+
+.submit {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
     align-items: center;
     height: 100%;
-  }
+}
